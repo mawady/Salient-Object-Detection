@@ -17,7 +17,7 @@ def main(args):
 		os.mkdir(output_folder)	
 	
 	# gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction = args.gpu_fraction)
-	with tf.Session(config=tf.ConfigProto(gpu_options = gpu_options)) as sess:
+	with tf.Session() as sess:
 		saver = tf.train.import_meta_graph('./meta_graph/my-model.meta')
 		saver.restore(sess,tf.train.latest_checkpoint('./salience_model'))
 		image_batch = tf.get_collection('image_batch')[0]
