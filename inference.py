@@ -40,7 +40,7 @@ def main(args):
 				if rgb.shape[2]==4:
 					rgb = rgba2rgb(rgb)
 				origin_shape = rgb.shape
-				rgb = np.expand_dims(resize(rgb.astype(np.uint8),[320,320,3]).astype(np.float32)-g_mean,0)
+				rgb = np.expand_dims(resize(rgb,[320,320,3]).astype(np.float32)-g_mean,0)
 				feed_dict = {image_batch:rgb}
 				pred_alpha = sess.run(pred_mattes,feed_dict = feed_dict)
 				final_alpha = resize(np.squeeze(pred_alpha),origin_shape)
