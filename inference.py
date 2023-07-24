@@ -44,7 +44,7 @@ def main(args):
 				feed_dict = {image_batch:rgb}
 				pred_alpha = sess.run(pred_mattes,feed_dict = feed_dict)
 				final_alpha = resize(np.squeeze(pred_alpha),origin_shape)
-				imsave(os.path.join(output_folder,rgb_pth),final_alpha)
+				imsave(os.path.join(output_folder,rgb_pth),normalize8(final_alpha))
 
 		else:
 			rgb = np.array(imread(args.rgb)).astype(np.float32)
