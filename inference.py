@@ -52,12 +52,12 @@ def main(args):
 				rgb = rgba2rgb(rgb)
 			origin_shape = rgb.shape[:2]
 			rgb = np.expand_dims(resize(rgb,[320,320,3]).astype(np.float32)-g_mean,0)
-			print(np.shape(rgb))
+			# print(np.shape(rgb))
 			feed_dict = {image_batch:rgb}
 			pred_alpha = sess.run(pred_mattes,feed_dict = feed_dict)
 			final_alpha = resize(np.squeeze(pred_alpha),origin_shape)
-			print(np.max(final_alpha))
-			print(np.min(final_alpha))
+			# print(np.max(final_alpha))
+			# print(np.min(final_alpha))
 			imsave(os.path.join(output_folder,'alpha.png'),normalize8(final_alpha))
 
 def parse_arguments(argv):
